@@ -113,6 +113,7 @@ const App = () => {
                 {emojiPickerToggle && (
                   <EmojiPicker
                     theme="dark"
+                    previewConfig={false}
                     width={300}
                     height={350}
                     onEmojiClick={(e) =>

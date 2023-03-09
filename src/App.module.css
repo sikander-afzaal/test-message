@@ -163,7 +163,7 @@
     width: 35px;
     height: 35px;
   }
-  .rightInput button img {
+  .rightInput > button > img {
     width: 20px;
   }
   .emojiPicker {
