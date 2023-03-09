@@ -1,0 +1,24 @@
+@font-face {
+  font-family: General-sans;
+  src: url("/fonts/GeneralSans-Medium.woff2") format("woff2");
+  font-weight: 500;
+}
+@font-face {
+  font-family: General-sans;
+  src: url("/fonts/GeneralSans-Semibold.woff2") format("woff2");
+  font-weight: 600;
+}
+
+* {
+  font-family: "General-sans";
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+:root {
+  --chat-bg: #20212e;
+  --sender-msg-bg: linear-gradient(114.79deg, #c040fc -17.76%, #4b3cff 99.88%);
+  --reciver-msg-bg: #434151;
+  --secondary-bg: #30303e;
+  --text-color: #ecddff;
+}
