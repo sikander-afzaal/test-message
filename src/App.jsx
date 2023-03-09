@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./App.module.css";
+import EmojiPicker from "emoji-picker-react";
 import Chat from "./components/Chat/Chat";
 
 const App = () => {
@@ -45,6 +46,7 @@ const App = () => {
       profileImg: "/user.png",
     },
   ]);
+  const [emojiPickerToggle, setEmojiPickerToggle] = useState(false);
   const [messageInput, setMessageInput] = useState("");
   const chatWrapperRef = useRef(null);
   const sendMsg = (e) => {
@@ -99,9 +101,27 @@ const App = () => {
             type="text"
           />
           <div className={styles.rightInput}>
-            <button type="button" className={styles.emoji}>
-              <img src="/emoji.png" alt="" />
-            </button>
+            <div type="button" className={styles.emojiWrapper}>
+              <button className={styles.emoji}>
+                <img
+                  onClick={() => setEmojiPickerToggle((prev) => !prev)}
+                  src="/emoji.png"
+                  alt=""
+                />
+              </button>
+              <div className={styles.emojiPicker}>
+                {emojiPickerToggle && (
+                  <EmojiPicker
+                    theme="dark"
+                    width={300}
+                    height={350}
+                    onEmojiClick={(e) =>
+                      setMessageInput((prev) => (prev += e.emoji))
+                    }
+                  />
+                )}
+              </div>
+            </div>
             <button type="submit" className={styles.send}>
               <img src="/send.png" alt="" />
             </button>
