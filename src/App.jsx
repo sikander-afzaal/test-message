@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./App.module.css";
 import Chat from "./components/Chat/Chat";
 
@@ -21,6 +21,16 @@ const App = () => {
     },
     {
       messages: ["Hello", "How are you"],
+      yourMsg: false,
+      profileImg: "/user.png",
+    },
+    {
+      messages: [
+        "I am fine",
+        "How are you",
+        "How is the weather there",
+        "How is the weather there",
+      ],
       yourMsg: true,
       profileImg: "/user.png",
     },
@@ -36,6 +46,7 @@ const App = () => {
     },
   ]);
   const [messageInput, setMessageInput] = useState("");
+  const chatWrapperRef = useRef(null);
   const sendMsg = (e) => {
     e.preventDefault();
     if (messageInput === "") return;
@@ -62,6 +73,10 @@ const App = () => {
     });
     setMessageInput("");
   };
+  useEffect(() => {
+    chatWrapperRef.current.scrollTop = chatWrapperRef.current.scrollHeight;
+  }, [dummyChat]);
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.chatComp}>
@@ -72,7 +87,7 @@ const App = () => {
             <p>Total Online: 296 Users</p>
           </div>
         </div>
-        <div className={styles.chatRoom}>
+        <div ref={chatWrapperRef} className={styles.chatRoom}>
           {dummyChat.map((elem, idx) => {
             return <Chat {...elem} key={idx + new Date()} />;
           })}
